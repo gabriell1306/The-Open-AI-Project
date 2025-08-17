@@ -19,5 +19,5 @@ app.use(express.json());
 // REMOVE THIS WHEN THIS APPLICATION IS MOVE TO PRODUCTION
 app.use(morgan("dev"));
 app.use("/api/v1", appRouter);
-export { app };
+export default app;
 //# sourceMappingURL=app.js.map
