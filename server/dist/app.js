@@ -18,9 +18,5 @@ app.use(express.json());
 // REMOVE THIS WHEN THIS APPLICATION IS MOVE TO PRODUCTION
 app.use(morgan("dev"));
 app.use("/api/v1", appRouter);
-// Routes ở đây
-app.get("/", (req, res) => {
-    res.send("Hello from Vercel!");
-});
 export default app;
 //# sourceMappingURL=app.js.map
