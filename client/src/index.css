@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Roboto Slab", serif;
+  text-decoration: none;
+}
+
+body {
+  background-color: #2e3440;
+}
+
+.image-inverted {
+  filter: invert(100%);
+}
+
+.nav-link {
+  margin: 0 10px;
+  padding: 8px 20px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.MuiOutlinedInput-input-root.Mui-focused,
+.MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
