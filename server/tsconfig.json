@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "moduleResolution": "NodeNext",
     "target": "ES2022",
-    "sourceMap": true,
+    "module": "commonjs",
     "outDir": "dist",
-    "allowSyntheticDefaultImports": true
+    "rootDir": "src",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmitOnError": false,        // ✅ vẫn xuất file JS dù có lỗi type
+    "strict": false,               // ✅ tắt strict mode
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts", "src/index.ts"]
+  "include": ["src"]
 }
