@@ -4,17 +4,16 @@
   "description": "",
   "main": "index.ts",
   "type": "module",
-"scripts": {
-  "build": "tsc",
-  "start": "node dist/index.js",
-  "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js\""
-},
+  "scripts": {
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\" ",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vercel/node": "^5.3.13",
-    "bcryptjs": "^3.0.2",
+    "bcrypt": "^5.1.0",
     "concurrently": "^8.2.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -25,8 +24,7 @@
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.2",
     "morgan": "^1.10.1",
-    "openai": "^3.3.0",
-    "serverless-http": "^3.2.0"
+    "openai": "^3.3.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
