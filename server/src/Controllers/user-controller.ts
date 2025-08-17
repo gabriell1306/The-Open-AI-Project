@@ -1,6 +1,6 @@
 import User from "../Models/User.js";
 import { Request, Response, NextFunction } from "express";
-import { compare, hash } from "bcrypt";
+import bcrypt from "bcryptjs";
 import { createToken } from "../Utilities/token-manager.js";
 import { COOKIE_NAME } from "../Utilities/constants.js";
 
@@ -9,14 +9,13 @@ export const getAllUsers = async (
   res: Response,
   next: NextFunction
 ) => {
-  // GET ALL USERS FROM DB
   try {
     const users = await User.find();
     return res.status(200).json({
       message: "OK",
       users,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     return res.status(500).json({
       message: "ERROR",
@@ -30,7 +29,6 @@ export const userSignup = async (
   res: Response,
   next: NextFunction
 ) => {
-  // USER SIGN UP
   try {
     const { name, email, password } = req.body;
 
@@ -38,22 +36,15 @@ export const userSignup = async (
     if (existUser)
       return res.status(401).send("This Email Is Already registered");
 
-    const hashedPaswword = await hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
       name,
       email,
-      password: hashedPaswword,
+      password: hashedPassword,
     });
 
     await user.save();
-
-    // res.clearCookie(COOKIE_NAME, {
-    //   httpOnly: true,
-    //   domain: "localhost",
-    //   signed: true,
-    //   path: "/",
-    // });
 
     const token = createToken(user._id.toString(), user.email, "7d");
 
@@ -73,7 +64,7 @@ export const userSignup = async (
       email: user.email,
       name: user.name,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     return res.status(500).json({
       message: "ERROR",
@@ -87,15 +78,14 @@ export const userLogin = async (
   res: Response,
   next: NextFunction
 ) => {
-  // USER LOG IN
   try {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
     if (!user) return res.status(401).send("User is not registered");
 
-    const isPastwordCorrect = await compare(password, user.password);
-    if (!isPastwordCorrect) return res.status(403).send("Incorrect Password");
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) return res.status(403).send("Incorrect Password");
 
     res.clearCookie(COOKIE_NAME, {
       httpOnly: true,
@@ -122,7 +112,7 @@ export const userLogin = async (
       email: user.email,
       name: user.name,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     return res.status(500).json({
       message: "ERROR",
@@ -137,25 +127,22 @@ export const verifyUser = async (
   next: NextFunction
 ) => {
   try {
-    // USER TOKEN CHECK
     const user = await User.findById(res.locals.jwtData.id);
     if (!user)
       return res
         .status(401)
-        .send("User is not registered OR Token Malufunctioned");
+        .send("User is not registered OR Token Malfunctioned");
 
     if (user._id.toString() !== res.locals.jwtData.id) {
-      return res.status(401).send("Permissioned didn't match");
+      return res.status(401).send("Permission didn't match");
     }
-
-    console.log(res.locals.jwtData.id, user._id.toString());
 
     return res.status(200).json({
       message: "OK",
       email: user.email,
       name: user.name,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     return res.status(500).json({
       message: "ERROR",
@@ -170,15 +157,14 @@ export const logoutUser = async (
   next: NextFunction
 ) => {
   try {
-    // USER TOKEN CHECK
     const user = await User.findById(res.locals.jwtData.id);
     if (!user)
       return res
         .status(401)
-        .send("User is not registered OR Token Malufunctioned");
+        .send("User is not registered OR Token Malfunctioned");
 
     if (user._id.toString() !== res.locals.jwtData.id) {
-      return res.status(401).send("Permissioned didn't match");
+      return res.status(401).send("Permission didn't match");
     }
 
     res.clearCookie(COOKIE_NAME, {
@@ -190,7 +176,7 @@ export const logoutUser = async (
     return res.status(200).json({
       message: "OK",
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     return res.status(500).json({
       message: "ERROR",
