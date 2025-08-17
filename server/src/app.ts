@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/api/v1", appRouter);
-app.use("/home", (req, res) => {
+app.use("/", (req, res) => {
   res.send("This is main route");
 });
 
