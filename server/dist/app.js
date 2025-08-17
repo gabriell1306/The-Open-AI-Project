@@ -8,8 +8,7 @@ config();
 const app = express();
 // MIDDLEWARES
 app.use(cors({
-    origin: "https://the-open-ai-project.vercel.app/", // hoặc domain frontend của bạn
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: "http://localhost:5173", // hoặc domain frontend của bạn
     credentials: true, // Cho phép gửi cookie
 }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -19,5 +18,5 @@ app.use(express.json());
 // REMOVE THIS WHEN THIS APPLICATION IS MOVE TO PRODUCTION
 app.use(morgan("dev"));
 app.use("/api/v1", appRouter);
-export default app;
+export { app };
 //# sourceMappingURL=app.js.map

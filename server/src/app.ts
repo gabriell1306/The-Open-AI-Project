@@ -13,8 +13,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://the-open-ai-project.vercel.app/", // hoặc domain frontend của bạn
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: "http://localhost:5173", // hoặc domain frontend của bạn
     credentials: true, // Cho phép gửi cookie
   })
 );
@@ -29,4 +28,4 @@ app.use(morgan("dev"));
 
 app.use("/api/v1", appRouter);
 
-export default app;
+export { app };
