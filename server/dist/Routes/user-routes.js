@@ -1,13 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const user_controller_js_1 = require("../Controllers/user-controller.js");
-const validators_js_1 = require("../Utilities/validators.js");
-const token_manager_js_1 = require("../Utilities/token-manager.js");
-const userRoutes = (0, express_1.Router)();
-userRoutes.get("/", user_controller_js_1.getAllUsers);
-userRoutes.post("/signup", (0, validators_js_1.validate)(validators_js_1.signupValidator), user_controller_js_1.userSignup);
-userRoutes.post("/login", (0, validators_js_1.validate)(validators_js_1.loginValidator), user_controller_js_1.userLogin);
-userRoutes.get("/auth-status", token_manager_js_1.verifytoken, user_controller_js_1.verifyUser);
-userRoutes.get("/delete", token_manager_js_1.verifytoken, user_controller_js_1.logoutUser);
-exports.default = userRoutes;
+import { Router } from "express";
+import { getAllUsers, logoutUser, userLogin, userSignup, verifyUser, } from "../Controllers/user-controller.js";
+import { loginValidator, signupValidator, validate, } from "../Utilities/validators.js";
+import { verifytoken } from "../Utilities/token-manager.js";
+const userRoutes = Router();
+userRoutes.get("/", getAllUsers);
+userRoutes.post("/signup", validate(signupValidator), userSignup);
+userRoutes.post("/login", validate(loginValidator), userLogin);
+userRoutes.get("/auth-status", verifytoken, verifyUser);
+userRoutes.get("/delete", verifytoken, logoutUser);
+export default userRoutes;
+//# sourceMappingURL=user-routes.js.map

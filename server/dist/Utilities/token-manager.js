@@ -1,26 +1,19 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifytoken = exports.createToken = void 0;
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const constants_js_1 = require("./constants.js");
-const createToken = (id, email, expiresIn) => {
+import jwt from "jsonwebtoken";
+import { COOKIE_NAME } from "./constants.js";
+export const createToken = (id, email, expiresIn) => {
     const payload = { id, email };
-    const token = jsonwebtoken_1.default.sign(payload, process.env.JWT_SECRET, {
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "7d",
     });
     return token;
 };
-exports.createToken = createToken;
-const verifytoken = async (req, res, next) => {
-    const token = req.signedCookies[`${constants_js_1.COOKIE_NAME}`];
+export const verifytoken = async (req, res, next) => {
+    const token = req.signedCookies[`${COOKIE_NAME}`];
     if (!token || token.trim() === "") {
         return res.status(401).json({ message: "Token not received" });
     }
     return new Promise((resolve, reject) => {
-        return jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET, (err, success) => {
+        return jwt.verify(token, process.env.JWT_SECRET, (err, success) => {
             if (err) {
                 reject(err.message);
                 return res.status(401).json({ message: "Token Expired" });
@@ -33,4 +26,4 @@ const verifytoken = async (req, res, next) => {
         });
     });
 };
-exports.verifytoken = verifytoken;
+//# sourceMappingURL=token-manager.js.map

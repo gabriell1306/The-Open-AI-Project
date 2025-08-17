@@ -1,14 +1,9 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const crypto_1 = require("crypto");
-const chatSchema = new mongoose_1.default.Schema({
+import mongoose from "mongoose";
+import { randomUUID } from "crypto";
+const chatSchema = new mongoose.Schema({
     id: {
         type: String,
-        default: (0, crypto_1.randomUUID)(),
+        default: randomUUID(),
     },
     //   TWO ROLES WHEN USING THE OPEN AI FOR ASSISTANCE - AI AND USER
     role: {
@@ -20,7 +15,7 @@ const chatSchema = new mongoose_1.default.Schema({
         required: true,
     },
 });
-const userSchema = new mongoose_1.default.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -35,4 +30,5 @@ const userSchema = new mongoose_1.default.Schema({
     },
     chats: [chatSchema],
 });
-exports.default = mongoose_1.default.model("User", userSchema);
+export default mongoose.model("User", userSchema);
+//# sourceMappingURL=User.js.map

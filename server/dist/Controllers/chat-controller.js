@@ -1,12 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteChats = exports.sendChatsToUser = exports.generateChatCompletion = void 0;
-const User_js_1 = __importDefault(require("../Models/User.js"));
-const openai_config_js_1 = require("../Config/openai-config.js");
-const generateChatCompletion = async (req, res, next) => {
+import User from "../Models/User.js";
+import { configureGroq } from "../Config/openai-config.js";
+export const generateChatCompletion = async (req, res, next) => {
     try {
         const { message } = req.body;
         // Check message hợp lệ
@@ -14,7 +8,7 @@ const generateChatCompletion = async (req, res, next) => {
             return res.status(400).json({ message: "Message cannot be empty" });
         }
         // Tìm user
-        const user = await User_js_1.default.findById(res.locals.jwtData.id);
+        const user = await User.findById(res.locals.jwtData.id);
         if (!user) {
             return res
                 .status(401)
@@ -29,7 +23,7 @@ const generateChatCompletion = async (req, res, next) => {
         chats.push({ role: "user", content: message });
         user.chats.push({ role: "user", content: message });
         // Khởi tạo Groq SDK
-        const groq = (0, openai_config_js_1.configureGroq)();
+        const groq = configureGroq();
         // Gọi API Groq
         const chatResponse = await groq.chat.completions.create({
             model: "llama3-8b-8192", // Bạn có thể đổi sang llama3-70b-8192 nếu muốn
@@ -55,11 +49,10 @@ const generateChatCompletion = async (req, res, next) => {
         });
     }
 };
-exports.generateChatCompletion = generateChatCompletion;
-const sendChatsToUser = async (req, res, next) => {
+export const sendChatsToUser = async (req, res, next) => {
     try {
         // USER TOKEN CHECK
-        const user = await User_js_1.default.findById(res.locals.jwtData.id);
+        const user = await User.findById(res.locals.jwtData.id);
         if (!user)
             return res
                 .status(401)
@@ -81,11 +74,10 @@ const sendChatsToUser = async (req, res, next) => {
         });
     }
 };
-exports.sendChatsToUser = sendChatsToUser;
-const deleteChats = async (req, res, next) => {
+export const deleteChats = async (req, res, next) => {
     try {
         // USER TOKEN CHECK
-        const user = await User_js_1.default.findById(res.locals.jwtData.id);
+        const user = await User.findById(res.locals.jwtData.id);
         if (!user)
             return res
                 .status(401)
@@ -109,4 +101,4 @@ const deleteChats = async (req, res, next) => {
         });
     }
 };
-exports.deleteChats = deleteChats;
+//# sourceMappingURL=chat-controller.js.map
