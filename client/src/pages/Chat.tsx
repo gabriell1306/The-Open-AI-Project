@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, IconButton, Typography } from "@mui/material";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { red } from "@mui/material/colors";
 import ChatItem from "../components/chat/ChatItem";
@@ -121,7 +121,7 @@ type Message = {
 
 function Chat() {
   const auth = useAuth();
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
@@ -166,10 +166,12 @@ function Chat() {
   }, [auth]);
 
   useEffect(() => {
-    if (!auth?.user) {
-      return naviagte("/login");
-    }
-  }, [auth]);
+    (async () => {
+      if (!auth?.user) {
+        navigate("/login");
+      }
+    })();
+  }, [auth, navigate]);
 
   return (
     <Box
