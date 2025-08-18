@@ -98,10 +98,10 @@ export const userLogin = async (
     if (!isPastwordCorrect) return res.status(403).send("Incorrect Password");
 
     res.clearCookie(COOKIE_NAME, {
-      httpOnly: true,
-      domain: "localhost",
-      signed: true,
       path: "/",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
 
     const token = createToken(user._id.toString(), user.email, "7d");
@@ -182,11 +182,12 @@ export const logoutUser = async (
     }
 
     res.clearCookie(COOKIE_NAME, {
-      httpOnly: true,
-      domain: "localhost",
-      signed: true,
       path: "/",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
+
     return res.status(200).json({
       message: "OK",
     });
