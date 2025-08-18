@@ -11,7 +11,7 @@ export const createToken = (id: string, email: string, expiresIn) => {
   return token;
 };
 
-export const verifytoken = async (
+export const verifyToken = async (
   req: Request,
   res: Response,
   next: NextFunction
