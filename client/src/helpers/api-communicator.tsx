@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const userlogin = async (email: string, password: string) => {
   const res = await axios.post(
-    "/user/login",
+    "https://the-open-ai-project.onrender.com/api/v1/user/login",
     { email, password },
     { withCredentials: true }
   );
@@ -16,7 +16,7 @@ export const userSignup = async (
   password: string
 ) => {
   const res = await axios.post(
-    "/user/signup",
+    "https://the-open-ai-project.onrender.com/api/v1/user/signup",
     { name, email, password },
     { withCredentials: true }
   );
@@ -25,14 +25,17 @@ export const userSignup = async (
 };
 
 export const checkAuthStatus = async () => {
-  const res = await axios.get("/user/auth-status", { withCredentials: true });
+  const res = await axios.get(
+    "https://the-open-ai-project.onrender.com/api/v1/user/auth-status",
+    { withCredentials: true }
+  );
   if (res.status !== 200) throw new Error("Unable to authenticate");
   return res.data;
 };
 
 export const sendChatRequest = async (message: string) => {
   const res = await axios.post(
-    "/chat/new",
+    "https://the-open-ai-project.onrender.com/api/v1/chat/new",
     { message },
     { withCredentials: true }
   );
@@ -42,7 +45,7 @@ export const sendChatRequest = async (message: string) => {
 
 export const getUserChats = async () => {
   const res = await axios.get(
-    "/chat/all-chats",
+    "https://the-open-ai-project.onrender.com/api/v1/chat/all-chats",
 
     { withCredentials: true }
   );
@@ -52,7 +55,7 @@ export const getUserChats = async () => {
 
 export const deleteChats = async () => {
   const res = await axios.delete(
-    "/chat/delete",
+    "https://the-open-ai-project.onrender.com/api/v1/chat/delete",
 
     { withCredentials: true }
   );
@@ -62,7 +65,7 @@ export const deleteChats = async () => {
 
 export const logOutUser = async () => {
   const res = await axios.get(
-    "/user/delete",
+    "https://the-open-ai-project.onrender.com/api/v1/user/delete",
 
     { withCredentials: true }
   );
