@@ -10,7 +10,7 @@ import axios from "axios";
 import { Toaster } from "react-hot-toast";
 
 // AXIOS SẼ MẶC ĐỊNH LẤY BASEURL ĐỂ GIAO TIẾP
-axios.defaults.baseURL = "http://localhost:5000/api/v1";
+axios.defaults.baseURL = "https://the-open-ai-project.onrender.com/api/v1";
 
 // Cho phép Axios tự động đính kèm cookie (ví dụ: chứa token)
 // trong các request, kể cả khi frontend và backend khác domain.// (kể cả khi frontend và backend ở 2 domain khác nhau).
