@@ -13,106 +13,106 @@ import {
 } from "../helpers/api-communicator";
 import toast from "react-hot-toast";
 
-const chatmessages = [
-  {
-    role: "user",
-    content: "Hello, who are you?",
-  },
-  {
-    role: "assistant",
-    content:
-      "Hi! I’m your AI assistant, here to help you with any questions you have.",
-  },
-  {
-    role: "user",
-    content: "Can you recommend me a frontend framework?",
-  },
-  {
-    role: "assistant",
-    content:
-      "Sure! If you enjoy building interactive UIs, I recommend ReactJS. It’s fast, flexible, and has a large community.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-  {
-    role: "user",
-    content: "Thanks!",
-  },
-  {
-    role: "assistant",
-    content: "You’re welcome! Let me know if you need anything else.",
-  },
-];
+// const chatmessages = [
+//   {
+//     role: "user",
+//     content: "Hello, who are you?",
+//   },
+//   {
+//     role: "assistant",
+//     content:
+//       "Hi! I’m your AI assistant, here to help you with any questions you have.",
+//   },
+//   {
+//     role: "user",
+//     content: "Can you recommend me a frontend framework?",
+//   },
+//   {
+//     role: "assistant",
+//     content:
+//       "Sure! If you enjoy building interactive UIs, I recommend ReactJS. It’s fast, flexible, and has a large community.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+//   {
+//     role: "user",
+//     content: "Thanks!",
+//   },
+//   {
+//     role: "assistant",
+//     content: "You’re welcome! Let me know if you need anything else.",
+//   },
+// ];
 
 type Message = {
   role: "user" | "assistant";

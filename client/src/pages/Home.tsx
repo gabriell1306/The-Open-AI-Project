@@ -2,7 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import { TypingAnimation } from "../components/typer/TypingAnimation";
 
 function Home() {
-  const theme = useTheme();
+  // const theme = useTheme();
   // const isBelowMd = useMediaQuery(theme.breakpoints.down("md"));
   // useMediaQuery;
   return (
