@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 // MIDDLEWARES
 app.use(
   cors({
-    origin: "http://localhost:5173", // thay bằng domain frontend khi deploy
+    origin: "https://the-open-ai-project-site.onrender.com", // thay bằng domain frontend khi deploy
     credentials: true, // Cho phép gửi cookie
   })
 );
