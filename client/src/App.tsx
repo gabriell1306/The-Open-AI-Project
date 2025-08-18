@@ -7,6 +7,8 @@ import Chat from "./pages/Chat";
 import NotFound from "./pages/NotFound";
 import { useAuth } from "./context/AuthContext";
 import Footer from "./components/Footer";
+import "./index.css";
+import "./app.css";
 
 function App() {
   const auth = useAuth();
