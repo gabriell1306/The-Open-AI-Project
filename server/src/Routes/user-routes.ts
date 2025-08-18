@@ -11,14 +11,14 @@ import {
   signupValidator,
   validate,
 } from "../Utilities/validators.js";
-import { verifytoken } from "../Utilities/token-manager.js";
+import { verifyToken } from "../Utilities/token-manager.js";
 
 const userRoutes = Router();
 
 userRoutes.get("/", getAllUsers);
 userRoutes.post("/signup", validate(signupValidator), userSignup);
 userRoutes.post("/login", validate(loginValidator), userLogin);
-userRoutes.get("/auth-status", verifytoken, verifyUser);
-userRoutes.get("/delete", verifytoken, logoutUser);
+userRoutes.get("/auth-status", verifyToken, verifyUser);
+userRoutes.get("/delete", verifyToken, logoutUser);
 
 export default userRoutes;
